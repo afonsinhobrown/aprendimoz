@@ -1,0 +1,26 @@
+services:
+  - type: web
+    name: aprendimoz-backend
+    runtime: docker
+    rootDir: backend
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3333
+      - key: DB_TYPE
+        value: postgres
+      - key: DB_HOST
+        value: aws-1-eu-west-2.pooler.supabase.com
+      - key: DB_PORT
+        value: 6543
+      - key: DB_USERNAME
+        value: postgres.fxqkpunzgeyfnfiusvtg
+      - key: DB_PASSWORD
+        value: pandorabox5229
+      - key: DB_DATABASE
+        value: postgres
+      - key: JWT_SECRET
+        value: aprendimoz_secret_key_2024
+      - key: JWT_EXPIRES_IN
+        value: 7d
