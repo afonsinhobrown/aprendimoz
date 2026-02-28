@@ -21,17 +21,20 @@ export const databaseConfig = (configService: ConfigService): TypeOrmModuleOptio
     };
   }
 
+  const isProduction = configService.get<string>('NODE_ENV') === 'production';
+
   return {
     type: 'postgres',
     host: configService.get<string>('DB_HOST') || 'localhost',
-    port: configService.get<number>('DB_PORT') || 5432,
-    username: configService.get<string>('DB_USERNAME') || 'aprendimoz',
+    port: configService.get<number>('DB_PORT') || 6543,
+    username: configService.get<string>('DB_USERNAME') || 'postgres',
     password: configService.get<string>('DB_PASSWORD'),
-    database: configService.get<string>('DB_DATABASE') || 'aprendimoz',
+    database: configService.get<string>('DB_DATABASE') || 'postgres',
     entities: [User, Course, Module, Lesson, Enrollment, Payment, Certificate],
-    synchronize: configService.get<string>('NODE_ENV') === 'development',
-    logging: configService.get<string>('NODE_ENV') === 'development',
-    migrations: ['src/database/migrations/*.ts'],
-    migrationsRun: true,
+    synchronize: !isProduction, // Desativar em produção por segurança
+    logging: !isProduction,
+    ssl: isProduction ? { rejectUnauthorized: false } : false, // Necessário para o Supabase na Cloud
+    migrations: [isProduction ? 'dist/database/migrations/*.js' : 'src/database/migrations/*.ts'],
+    migrationsRun: isProduction,
   };
 };
