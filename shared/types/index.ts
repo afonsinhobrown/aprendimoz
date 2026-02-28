@@ -59,6 +59,7 @@ export interface Course {
   reviewCount: number;
   enrollmentCount: number;
   isCertified: boolean;
+  formattedPrice?: string;
   createdAt: Date;
   updatedAt: Date;
 }
