@@ -14,7 +14,7 @@ interface AuthContextType extends AuthState {
   login: (email: string, password: string) => Promise<void>;
   register: (userData: any) => Promise<void>;
   logout: () => void;
-  refreshToken: () => Promise<void>;
+  refreshAuthToken: () => Promise<void>;
 }
 
 type AuthAction =
@@ -202,7 +202,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     login,
     register,
     logout,
-    refreshToken: refreshTokenAction,
+    refreshAuthToken: refreshTokenAction,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
