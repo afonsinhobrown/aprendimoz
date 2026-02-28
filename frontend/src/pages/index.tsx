@@ -9,7 +9,8 @@ import {
   ShieldCheckIcon,
   CursorArrowRaysIcon,
   ArrowRightIcon,
-  DevicePhoneMobileIcon
+  DevicePhoneMobileIcon,
+  CheckBadgeIcon
 } from '@heroicons/react/24/outline';
 import { StarIcon } from '@heroicons/react/24/solid';
 
@@ -309,4 +310,3 @@ export default function HomePage() {
   );
 }
 
-import { CheckBadgeIcon } from '@heroicons/react/24/outline';

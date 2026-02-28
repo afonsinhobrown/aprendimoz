@@ -16,6 +16,7 @@ import {
     PhoneIcon
 } from '@heroicons/react/24/outline';
 import { StarIcon as StarIconSolid } from '@heroicons/react/24/solid';
+import Link from 'next/link';
 
 export default function CourseDetailPage() {
     const router = useRouter();
@@ -137,8 +138,8 @@ export default function CourseDetailPage() {
                                         key={tab.id}
                                         onClick={() => setActiveTab(tab.id)}
                                         className={`flex-1 py-4 px-6 rounded-2xl font-bold transition-all ${activeTab === tab.id
-                                                ? 'bg-primary-600 text-white shadow-lg shadow-primary-600/30'
-                                                : 'text-gray-500 hover:bg-gray-50 hover:text-gray-900'
+                                            ? 'bg-primary-600 text-white shadow-lg shadow-primary-600/30'
+                                            : 'text-gray-500 hover:bg-gray-50 hover:text-gray-900'
                                             }`}
                                     >
                                         {tab.label}
@@ -397,4 +398,3 @@ export default function CourseDetailPage() {
     );
 }
 
-import Link from 'next/link';

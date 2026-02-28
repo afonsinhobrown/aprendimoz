@@ -12,7 +12,8 @@ import {
   BellIcon,
   FireIcon,
   CheckCircleIcon,
-  ArrowRightIcon
+  ArrowRightIcon,
+  ChartBarIcon
 } from '@heroicons/react/24/outline';
 import { StarIcon as StarIconSolid } from '@heroicons/react/24/solid';
 import { useAuth } from '../../contexts/AuthContext';
@@ -85,7 +86,7 @@ export default function DashboardPage() {
             <div className="w-px h-8 bg-gray-200"></div>
             <div className="flex items-center space-x-4 pl-2 cursor-pointer group" onClick={() => router.push('/profile')}>
               <div className="text-right">
-                <p className="text-sm font-black text-gray-900 group-hover:text-primary-600 transition-colors">{user?.fullName || 'Estudante Moz'}</p>
+                <p className="text-sm font-black text-gray-900 group-hover:text-primary-600 transition-colors">{user?.fullName || (user ? `${user.firstName} ${user.lastName}` : 'Estudante Moz')}</p>
                 <p className="text-[10px] font-black uppercase tracking-widest text-primary-600 mt-0.5">Nível 5 • Gold</p>
               </div>
               <div className="w-12 h-12 bg-gradient-to-br from-primary-600 to-indigo-600 rounded-2xl flex items-center justify-center shadow-lg shadow-primary-600/20 group-hover:rotate-6 transition-transform overflow-hidden font-black text-white text-xl">
@@ -266,5 +267,3 @@ export default function DashboardPage() {
     </div>
   );
 }
-
-import { ChartBarIcon } from '@heroicons/react/24/outline';

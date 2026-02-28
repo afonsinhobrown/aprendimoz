@@ -18,6 +18,7 @@ export interface User {
   email: string;
   firstName: string;
   lastName: string;
+  fullName?: string;
   phone?: string;
   role: UserRole;
   status: UserStatus;
