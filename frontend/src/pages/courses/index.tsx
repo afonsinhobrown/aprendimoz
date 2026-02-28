@@ -47,7 +47,12 @@ export default function CoursesPage() {
             if (search) params.search = search;
 
             const response = await api.get('/courses', params);
-            setCourses(response.data.items || []);
+
+            // Lógica resiliente para diferentes formatos de resposta
+            const result = response.data;
+            const coursesData = result.data?.items || result.items || (Array.isArray(result.data) ? result.data : (Array.isArray(result) ? result : []));
+
+            setCourses(coursesData);
         } catch (error) {
             console.error('Error fetching courses:', error);
         } finally {
