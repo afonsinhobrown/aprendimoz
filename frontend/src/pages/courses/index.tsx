@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import Layout from '../../components/layout/Layout';
 import CourseCard from '../../components/CourseCard';
 import { api } from '../../lib/api';
+import { Course } from '@shared/types';
 import {
     FunnelIcon,
     MagnifyingGlassIcon,
@@ -27,7 +28,7 @@ const LEVELS = [
 ];
 
 export default function CoursesPage() {
-    const [courses, setCourses] = useState([]);
+    const [courses, setCourses] = useState<Course[]>([]);
     const [loading, setLoading] = useState(true);
     const [search, setSearch] = useState('');
     const [selectedCategory, setSelectedCategory] = useState('Todos');
@@ -121,8 +122,8 @@ export default function CoursesPage() {
                                                     key={cat}
                                                     onClick={() => setSelectedCategory(cat)}
                                                     className={`flex items-center w-full px-4 py-3 rounded-xl transition-all ${selectedCategory === cat
-                                                            ? 'bg-primary-600 text-white font-bold shadow-lg shadow-primary-600/20'
-                                                            : 'bg-white text-gray-600 hover:bg-gray-100 border border-gray-100'
+                                                        ? 'bg-primary-600 text-white font-bold shadow-lg shadow-primary-600/20'
+                                                        : 'bg-white text-gray-600 hover:bg-gray-100 border border-gray-100'
                                                         }`}
                                                 >
                                                     {cat}
@@ -140,8 +141,8 @@ export default function CoursesPage() {
                                                     key={level.id}
                                                     onClick={() => setSelectedLevel(level.id)}
                                                     className={`flex items-center w-full px-4 py-3 rounded-xl transition-all ${selectedLevel === level.id
-                                                            ? 'bg-secondary-600 text-white font-bold shadow-lg shadow-secondary-600/20'
-                                                            : 'bg-white text-gray-600 hover:bg-gray-100 border border-gray-100'
+                                                        ? 'bg-secondary-600 text-white font-bold shadow-lg shadow-secondary-600/20'
+                                                        : 'bg-white text-gray-600 hover:bg-gray-100 border border-gray-100'
                                                         }`}
                                                 >
                                                     {level.label}
