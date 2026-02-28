@@ -20,7 +20,15 @@ services:
         value: pandorabox5229
       - key: DB_DATABASE
         value: postgres
+      - key: SUPABASE_URL
+        value: https://fxqkpunzgeyfnfiusvtg.supabase.co
+      - key: SUPABASE_ANON_KEY
+        value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+      - key: OPENAI_API_KEY
+        generateValue: true
       - key: JWT_SECRET
         value: aprendimoz_secret_key_2024
       - key: JWT_EXPIRES_IN
         value: 7d
+      - key: FRONTEND_URL
+        value: https://aprendimoz.vercel.app

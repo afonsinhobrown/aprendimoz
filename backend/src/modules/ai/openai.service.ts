@@ -8,10 +8,21 @@ export class OpenaiService {
   private readonly openai: OpenAI;
 
   constructor(private readonly configService: ConfigService) {
-    this.openai = new OpenAI({
-      apiKey: this.configService.get<string>('OPENAI_API_KEY'),
-      organization: this.configService.get<string>('OPENAI_ORG_ID'),
-    });
+    const apiKey = this.configService.get<string>('OPENAI_API_KEY');
+    if (apiKey) {
+      this.openai = new OpenAI({
+        apiKey,
+        organization: this.configService.get<string>('OPENAI_ORG_ID'),
+      });
+    } else {
+      this.logger.warn('OPENAI_API_KEY is missing. AI features will be disabled.');
+    }
+  }
+
+  private checkOpenAI() {
+    if (!this.openai) {
+      throw new Error('AI features are disabled because OPENAI_API_KEY is not configured.');
+    }
   }
 
   async generateQuizQuestions(
@@ -19,6 +30,7 @@ export class OpenaiService {
     numberOfQuestions: number = 5,
     difficulty: 'easy' | 'medium' | 'hard' = 'medium',
   ): Promise<any[]> {
+    this.checkOpenAI();
     try {
       const prompt = `
         Com base no seguinte conteúdo de uma aula, gere ${numberOfQuestions} perguntas de múltipla escolha para um quiz.
@@ -85,6 +97,7 @@ export class OpenaiService {
     courseContent: string,
     targetAudience: string,
   ): Promise<string> {
+    this.checkOpenAI();
     try {
       const prompt = `
         Gere uma descrição atraente e profissional para um curso online com base nas seguintes informações:
@@ -146,6 +159,7 @@ export class OpenaiService {
     completedCourses: any[],
     interests: string[],
   ): Promise<any[]> {
+    this.checkOpenAI();
     try {
       const completedCoursesText = completedCourses
         .map(course => `- ${course.title} (${course.category})`)
@@ -229,6 +243,7 @@ export class OpenaiService {
     courseContext: string,
     lessonContext?: string,
   ): Promise<string> {
+    this.checkOpenAI();
     try {
       const contextText = lessonContext
         ? `Contexto da aula: ${lessonContext}\n\nContexto do curso: ${courseContext}`
@@ -285,6 +300,7 @@ export class OpenaiService {
     courseObjectives: string,
     targetDuration: number,
   ): Promise<any> {
+    this.checkOpenAI();
     try {
       const prompt = `
         Crie um esboço detalhado para um módulo de curso com as seguintes informações:
@@ -358,6 +374,7 @@ export class OpenaiService {
     timeAvailable: number, // hours per week
     targetRole: string,
   ): Promise<any> {
+    this.checkOpenAI();
     try {
       const goalsText = userGoals.join(', ');
 
