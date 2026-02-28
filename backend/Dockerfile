@@ -3,11 +3,13 @@ FROM node:18-alpine
 # Set working directory
 WORKDIR /app
 
-# Copy package files (from root as build context)
+# Copy package files
+COPY package.json ./
 COPY backend/package*.json ./backend/
 COPY shared/package*.json ./shared/
 
 # Install dependencies
+RUN npm install
 RUN npm install --prefix shared
 RUN npm install --prefix backend
 
@@ -16,11 +18,10 @@ COPY shared ./shared
 COPY backend ./backend
 
 # Build the application
-WORKDIR /app/backend
-RUN npm run build
+RUN npm run build --prefix backend
 
 # Expose port (Matching .env)
 EXPOSE 3333
 
 # Start the application
-CMD ["npm", "run", "start:prod"]
+CMD ["npm", "run", "start:prod", "--prefix", "backend"]
