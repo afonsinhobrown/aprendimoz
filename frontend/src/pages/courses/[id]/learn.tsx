@@ -8,6 +8,7 @@ import {
     PlayIcon,
     CheckBadgeIcon,
     ChevronRightIcon,
+    ChevronDownIcon,
     ChatBubbleLeftRightIcon,
     FolderArrowDownIcon,
     QuestionMarkCircleIcon,
@@ -163,8 +164,8 @@ export default function LearnPage() {
                                         key={tab.id}
                                         onClick={() => setActiveTab(tab.id)}
                                         className={`pb-4 px-2 flex items-center space-x-2 font-bold transition-all border-b-2 ${activeTab === tab.id
-                                                ? 'border-primary-600 text-primary-500'
-                                                : 'border-transparent text-gray-500 hover:text-white'
+                                            ? 'border-primary-600 text-primary-500'
+                                            : 'border-transparent text-gray-500 hover:text-white'
                                             }`}
                                     >
                                         <tab.icon className="h-5 w-5" />
@@ -220,8 +221,8 @@ export default function LearnPage() {
                                             key={lesson.id}
                                             onClick={() => setActiveLesson(lesson)}
                                             className={`w-full text-left px-6 py-4 rounded-xl transition-all flex items-center space-x-4 ${activeLesson?.id === lesson.id
-                                                    ? 'bg-primary-600/20 border border-primary-600/30'
-                                                    : 'hover:bg-white/5'
+                                                ? 'bg-primary-600/20 border border-primary-600/30'
+                                                : 'hover:bg-white/5'
                                                 }`}
                                         >
                                             <div className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 ${activeLesson?.id === lesson.id ? 'bg-primary-600 text-white' : 'bg-gray-800 text-gray-500'
