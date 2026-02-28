@@ -27,12 +27,10 @@ async function bootstrap() {
   // Global interceptors
   app.useGlobalInterceptors(new TransformInterceptor());
 
-  // CORS
-  const frontendUrl = configService.get('FRONTEND_URL') || 'http://localhost:3000';
-  const allowedOrigins = frontendUrl.split(',').map(origin => origin.trim());
-
+  // CORS - Allow all origins temporarily for production debugging
   app.enableCors({
-    origin: allowedOrigins,
+    origin: true,
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
     credentials: true,
   });
 
