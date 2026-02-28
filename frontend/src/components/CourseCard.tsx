@@ -7,7 +7,8 @@ import {
   BookmarkIcon,
 } from '@heroicons/react/24/outline';
 import { StarIcon as StarIconSolid } from '@heroicons/react/24/solid';
-import { Course } from '../../shared/types';
+import { User } from '@shared/types';
+import { Course } from '@shared/types';
 
 interface CourseCardProps {
   course: Course;
@@ -38,7 +39,7 @@ export default function CourseCard({ course, showProgress = false, progress = 0 
         {/* Badges Overlay */}
         <div className="absolute top-4 left-4 flex flex-col space-y-2">
           <span className={`badge ${course.level === 'beginner' ? 'badge-success' :
-              course.level === 'intermediate' ? 'badge-warning' : 'badge-danger'
+            course.level === 'intermediate' ? 'badge-warning' : 'badge-danger'
             } shadow-sm px-3 py-1.5`}>
             {course.level === 'beginner' ? 'Iniciante' :
               course.level === 'intermediate' ? 'Intermédio' : 'Avançado'}

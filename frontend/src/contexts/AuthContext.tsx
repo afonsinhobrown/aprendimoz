@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useReducer, useEffect, ReactNode } from 'react';
-import { User, AuthResponse } from '../../shared/types';
+import { User, AuthResponse } from '@shared/types';
 import { api } from '../lib/api';
 
 interface AuthState {

@@ -2,23 +2,23 @@ import { useState, FormEvent } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import Head from 'next/head';
-import { 
-  EyeIcon, 
-  EyeSlashIcon, 
-  UserIcon, 
-  EnvelopeIcon, 
+import {
+  EyeIcon,
+  EyeSlashIcon,
+  UserIcon,
+  EnvelopeIcon,
   PhoneIcon,
   AcademicCapIcon,
   CheckBadgeIcon
 } from '@heroicons/react/24/outline';
 import toast from 'react-hot-toast';
 import { useAuth } from '../../contexts/AuthContext';
-import { UserRole } from '../../../../shared/types';
+import { UserRole } from '@shared/types';
 
 export default function RegisterPage() {
   const router = useRouter();
   const { register, isLoading } = useAuth();
-  
+
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -87,14 +87,14 @@ export default function RegisterPage() {
         {/* Left Side: Visual/Content */}
         <div className="hidden lg:flex lg:w-1/2 relative bg-primary-900 overflow-hidden">
           <div className="absolute inset-0 z-0 opacity-40">
-            <img 
-              src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=2070&auto=format&fit=crop" 
+            <img
+              src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=2070&auto=format&fit=crop"
               className="w-full h-full object-cover"
               alt="Estudantes"
             />
           </div>
           <div className="absolute inset-0 bg-gradient-to-t from-primary-900 via-primary-900/60 to-transparent z-1"></div>
-          
+
           <div className="relative z-10 w-full flex flex-col justify-center px-16 xl:px-24">
             <div className="flex items-center mb-12">
               <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center shadow-2xl">
@@ -102,15 +102,15 @@ export default function RegisterPage() {
               </div>
               <span className="ml-4 text-3xl font-black text-white tracking-tight">AprendiMoz</span>
             </div>
-            
+
             <h1 className="text-5xl font-extrabold text-white leading-tight mb-8">
               Transforme o seu <span className="text-yellow-400">futuro</span> hoje.
             </h1>
-            
+
             <p className="text-xl text-primary-100 mb-12 max-w-lg">
               Junte-se a maior comunidade de aprendizado online em Moçambique e acelere a sua carreira com certificados reconhecidos.
             </p>
-            
+
             <ul className="space-y-6">
               {[
                 { icon: AcademicCapIcon, text: 'Acesse mais de 500 cursos exclusivos' },
@@ -126,7 +126,7 @@ export default function RegisterPage() {
               ))}
             </ul>
           </div>
-          
+
           <div className="absolute bottom-12 left-16 right-16 z-10">
             <div className="flex items-center space-x-4 text-primary-200">
               <p className="text-sm">Ao registar-se, concorda com os nossos <Link href="#" className="text-white hover:underline">Termos</Link> e <Link href="#" className="text-white hover:underline">Privacidade</Link>.</p>
@@ -152,7 +152,7 @@ export default function RegisterPage() {
                 <div className="space-y-1">
                   <label className="text-sm font-semibold text-gray-700">Nome</label>
                   <div className="relative">
-                    <input 
+                    <input
                       name="firstName"
                       type="text"
                       className={`input-premium ${errors.firstName ? 'border-red-500 bg-red-50' : ''}`}
@@ -165,7 +165,7 @@ export default function RegisterPage() {
                 </div>
                 <div className="space-y-1">
                   <label className="text-sm font-semibold text-gray-700">Apelido</label>
-                  <input 
+                  <input
                     name="lastName"
                     type="text"
                     className={`input-premium ${errors.lastName ? 'border-red-500 bg-red-50' : ''}`}
@@ -183,7 +183,7 @@ export default function RegisterPage() {
                   <span className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
                     <EnvelopeIcon className="h-5 w-5 text-gray-400" />
                   </span>
-                  <input 
+                  <input
                     name="email"
                     type="email"
                     className={`input-premium pl-11 ${errors.email ? 'border-red-500 bg-red-50' : ''}`}
@@ -201,7 +201,7 @@ export default function RegisterPage() {
                   <span className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
                     <PhoneIcon className="h-5 w-5 text-gray-400" />
                   </span>
-                  <input 
+                  <input
                     name="phone"
                     type="tel"
                     className={`input-premium pl-11 ${errors.phone ? 'border-red-500 bg-red-50' : ''}`}
@@ -216,7 +216,7 @@ export default function RegisterPage() {
               <div className="space-y-1">
                 <label className="text-sm font-semibold text-gray-700">Senha</label>
                 <div className="relative">
-                  <input 
+                  <input
                     name="password"
                     type={showPassword ? 'text' : 'password'}
                     className={`input-premium ${errors.password ? 'border-red-500 bg-red-50' : ''}`}
@@ -224,7 +224,7 @@ export default function RegisterPage() {
                     value={formData.password}
                     onChange={handleChange}
                   />
-                  <button 
+                  <button
                     type="button"
                     className="absolute inset-y-0 right-0 pr-4 flex items-center"
                     onClick={() => setShowPassword(!showPassword)}
@@ -237,7 +237,7 @@ export default function RegisterPage() {
 
               <div className="space-y-1">
                 <label className="text-sm font-semibold text-gray-700">Confirmar Senha</label>
-                <input 
+                <input
                   name="confirmPassword"
                   type="password"
                   className={`input-premium ${errors.confirmPassword ? 'border-red-500 bg-red-50' : ''}`}
@@ -273,7 +273,7 @@ export default function RegisterPage() {
                 </div>
               </div>
 
-              <Link 
+              <Link
                 href="/auth/login"
                 className="btn btn-outline w-full py-4 text-lg"
               >
